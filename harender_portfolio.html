@@ -1,0 +1,255 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --accent: #7c6ff7;
+    --accent2: #4ecdc4;
+    --accent3: #ff6b6b;
+    --text: #f0eeff;
+    --muted: #888;
+    --border: rgba(124,111,247,0.2);
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+  }
+
+  body { background: var(--bg); color: var(--text); font-family: var(--font-head); min-height: 100vh; }
+
+  .portfolio { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  .hero { padding: 3rem 0 2rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+
+  .hero-name { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1; letter-spacing: -2px; background: linear-gradient(135deg, #f0eeff 0%, #7c6ff7 60%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .hero-title { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent2); letter-spacing: 2px; text-transform: uppercase; margin-top: 0.75rem; margin-bottom: 1rem; }
+
+  .hero-bio { font-size: 0.95rem; color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+  .hero-avatar { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #7c6ff7, #4ecdc4); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+
+  .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+
+  .contact-pill { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); border: 1px solid var(--border); border-radius: 100px; padding: 5px 14px; text-decoration: none; transition: all 0.2s; }
+
+  .contact-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); }
+
+  section { margin-bottom: 3rem; }
+
+  .section-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 12px; }
+
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .skill-tag { font-family: var(--font-mono); font-size: 0.78rem; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); background: var(--surface); cursor: default; transition: all 0.15s; }
+
+  .skill-tag:hover { border-color: var(--accent); color: var(--text); background: rgba(124,111,247,0.1); }
+
+  .skill-tag.highlight { border-color: rgba(78,205,196,0.4); color: var(--accent2); background: rgba(78,205,196,0.05); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
+
+  .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); opacity: 0; transition: opacity 0.2s; }
+
+  .project-card:hover { border-color: rgba(124,111,247,0.4); transform: translateY(-2px); }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); margin-bottom: 0.75rem; }
+
+  .project-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+
+  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .p-tag { font-family: var(--font-mono); font-size: 0.68rem; padding: 3px 8px; border-radius: 4px; background: rgba(124,111,247,0.1); color: var(--accent); border: 1px solid rgba(124,111,247,0.2); }
+
+  .edu-list { display: grid; gap: 1rem; }
+
+  .edu-card { display: flex; justify-content: space-between; align-items: flex-start; padding: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; gap: 1rem; }
+
+  .edu-degree { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+
+  .edu-school { font-size: 0.82rem; color: var(--muted); }
+
+  .edu-grade { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent2); white-space: nowrap; text-align: right; }
+
+  .edu-year { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 4px; }
+
+  .cert-list { display: grid; gap: 0.6rem; }
+
+  .cert-item { display: flex; align-items: center; gap: 12px; padding: 0.8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 0.85rem; }
+
+  .cert-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(124,111,247,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  .cert-name { color: var(--text); flex: 1; }
+
+  .cert-date { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+
+  .trophy { color: var(--accent3); font-size: 13px; }
+
+  .footer { border-top: 1px solid var(--border); padding-top: 2rem; text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+  @media (max-width: 500px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-avatar { display: none; }
+  }
+</style>
+
+<div class="portfolio">
+
+  <div class="hero">
+    <div>
+      <div class="hero-name">Harender<br>Tanwar</div>
+      <div class="hero-title">// AI & ML Engineer · Greater Noida, India</div>
+      <div class="hero-bio">Enthusiastic working professional with excellent problem-solving skills. Passionate about coding and eager to learn new technologies.</div>
+      <div class="contact-bar">
+        <a class="contact-pill" href="mailto:harendertanwar1714@gmail.com"><span class="dot"></span>harendertanwar1714@gmail.com</a>
+        <a class="contact-pill" href="https://linkedin.com/in/harender-tanwar-a94a88232/" target="_blank"><span class="dot"></span>LinkedIn</a>
+        <a class="contact-pill" href="https://github.com/Harender23" target="_blank"><span class="dot"></span>GitHub</a>
+        <a class="contact-pill" href="tel:9817822559"><span class="dot"></span>+91 9817822559</a>
+      </div>
+    </div>
+    <div class="hero-avatar">HT</div>
+  </div>
+
+  <section>
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <span class="skill-tag highlight">Python</span>
+      <span class="skill-tag highlight">Machine Learning</span>
+      <span class="skill-tag highlight">Deep Learning</span>
+      <span class="skill-tag">Data Structures & Algorithms</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">HTML &amp; CSS</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">DBMS</span>
+      <span class="skill-tag">OOP</span>
+      <span class="skill-tag">Operating Systems</span>
+      <span class="skill-tag">Computer Networks</span>
+      <span class="skill-tag">MS Excel (Advanced)</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01 / Final Year Project</div>
+        <div class="project-name">Movies Sentiment Analysis</div>
+        <div class="project-desc">Analyzes sentiment of movie reviews using VADER. Recommends similar movies and generates AI summaries based on user reviews.</div>
+        <div class="project-tags">
+          <span class="p-tag">Python</span>
+          <span class="p-tag">VADER</span>
+          <span class="p-tag">NLP</span>
+          <span class="p-tag">Recommendation</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02 / ML Project</div>
+        <div class="project-name">Movie Recommendation System</div>
+        <div class="project-desc">Recommends movies based on actor/actress names using cosine similarity to find related titles from the dataset.</div>
+        <div class="project-tags">
+          <span class="p-tag">Python</span>
+          <span class="p-tag">Cosine Similarity</span>
+          <span class="p-tag">ML</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03 / Data Analytics</div>
+        <div class="project-name">Hotel Cancellation Dashboard</div>
+        <div class="project-desc">Interactive Excel dashboard visualizing hotel cancellation data using graphs, pivot tables, and slicers for business insights.</div>
+        <div class="project-tags">
+          <span class="p-tag">MS Excel</span>
+          <span class="p-tag">Pivot Tables</span>
+          <span class="p-tag">Data Viz</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-list">
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">B.Tech — Computer Science (AI &amp; ML)</div>
+          <div class="edu-school">JIMS Engineering Management Technical Campus, Greater Noida</div>
+        </div>
+        <div>
+          <div class="edu-grade">GPA 7.4</div>
+          <div class="edu-year">2021 – 2025</div>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Senior Secondary (XII)</div>
+          <div class="edu-school">M.V.N Public School, Faridabad</div>
+        </div>
+        <div>
+          <div class="edu-grade">80%</div>
+          <div class="edu-year">2020 – 2021</div>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">High School (X)</div>
+          <div class="edu-school">S.N.D Public School, Palwal</div>
+        </div>
+        <div>
+          <div class="edu-grade">85%</div>
+          <div class="edu-year">2018 – 2019</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Certifications &amp; Achievements</div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7c6ff7" stroke-width="1.2"/><path d="M4.5 7l2 2 3-3" stroke="#7c6ff7" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <span class="cert-name">Artificial Intelligence — YHills</span>
+        <span class="cert-date">Jul – Aug 2024</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7c6ff7" stroke-width="1.2"/><path d="M4.5 7l2 2 3-3" stroke="#7c6ff7" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <span class="cert-name">Introduction to AI — Coursera</span>
+        <span class="cert-date">Feb – Mar 2022</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7c6ff7" stroke-width="1.2"/><path d="M4.5 7l2 2 3-3" stroke="#7c6ff7" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <span class="cert-name">Python Basics — Coursera</span>
+        <span class="cert-date">Jan 2022</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#7c6ff7" stroke-width="1.2"/><path d="M4.5 7l2 2 3-3" stroke="#7c6ff7" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <span class="cert-name">200+ coding problems solved — W3Schools</span>
+        <span class="cert-date">Ongoing</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><span class="trophy">★</span></div>
+        <span class="cert-name">1st Place — Cricket, Inter-School Competition</span>
+        <span class="cert-date">Aug 2019</span>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><span class="trophy">★</span></div>
+        <span class="cert-name">2nd Place — 200m Race, Inter-School Competition</span>
+        <span class="cert-date">Aug 2019</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">harender tanwar · harendertanwar1714@gmail.com · greater noida, india</div>
+
+</div>
